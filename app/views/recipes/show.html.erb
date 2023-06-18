@@ -1,0 +1,25 @@
+<%= render "shared/page_title", title: @recipe.name %>
+<div class="row">
+    <div class="col-md-2">
+        <section class="cenetr">
+        </section>
+    </div>
+    <div class="col-md-8 well">
+        <h2><%= @recipe.name %></h2>
+        <h1>description: <%= simple_format(@recipe.description) %></h1>
+<p class="cenetr">
+    <%= link_to gravatar_for(@recipe.chef) ,recipe_path %>
+</p>
+        <p>
+        <span class="quiet">
+        </p>
+        Created by <%= @recipe.chef.chefname %>
+        </span>
+         <small>Created <%= time_ago_in_words(@recipe.created_at) %> ago</small>
+         <%= link_to "edit" , edit_recipe_path(@recipe)%>
+               <%= link_to "delete", recipe_path(@recipe), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+          } %>
+          <%= link_to "back" , recipes_path%>
+    </div>

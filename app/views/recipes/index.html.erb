@@ -6,9 +6,10 @@
         </section>
         </div>
         <div class="col-md-8 well">
-        <h2><%= link_to recipe.name,  %></h2>
+        <h2><%= link_to recipe.name , recipe_path(recipe)%></h2>
         <p><%= truncate(recipe.description, length: 150) %></p>
         <p>
+            <span> <%=gravatar_for(recipe.chef, size: 20)  %></span>
         <span class="quiet">
         <small>Created<%= time_ago_in_words(recipe.created_at) %> ago</small>
         </p>

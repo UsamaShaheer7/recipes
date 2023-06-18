@@ -1,0 +1,14 @@
+<h1>ths is new page of chef after signup</h1>
+<%= render "shared/error" , obj: @chef %>
+<%= form_for (@chef) do |f| %>
+  <%= f.label :chefname, "Chef Name" %>
+  <%= f.text_field :chefname ,class: "form-control", placeholder: "enetr name"%><br/>
+  <%= f.label :email %>
+  <%= f.email_field :email ,class: "form-control", placeholder: "enetr email"%><br/>
+  <%= f.label :password %>
+  <%= f.password_field :password ,class: "form-control", placeholder: "enetr passworf"%><br/>
+  <%= f.label :password_confirmation , "confirm password" %>
+  <%= f.password_field :password_confirmation ,class: "form-control", placeholder: "enetr confirm-password"%><br/> 
+  <%= f.submit "Sign up and create my acount", class: "btn btn-primary" %>
+<% end %>
+<%= link_to "back", chefs_path %>
