@@ -1,19 +1,2 @@
 <h1 align="center">listining all recipes</h1><hr/>
-<% @recipes.each do |recipe| %>
-    <div class="row">
-        <div class="col-md-2">
-        <section class="cenetr">
-        </section>
-        </div>
-        <div class="col-md-8 well">
-        <h2><%= link_to recipe.name , recipe_path(recipe)%></h2>
-        <p><%= truncate(recipe.description, length: 150) %></p>
-        <p>
-            <span> <%=gravatar_for(recipe.chef, size: 20)  %></span>
-        <span class="quiet">
-        <small>Created<%= time_ago_in_words(recipe.created_at) %> ago</small>
-        </p>
-        </span>
-        </div>
-    </div>
-<%end%>
+<%= render"recipe" , obj: @recipes%>

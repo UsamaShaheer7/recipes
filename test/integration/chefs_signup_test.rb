@@ -17,6 +17,10 @@ test "reject an invalid signup" do
 test "accept valid signup" do
     get signup_path
     assert_difference "Chef.count", 1 do
-        post chefs_path, params:{chef:{chefname: "usama", email: "", password: "password", password_confirmation: "password"}}
+        post chefs_path, params:{chef:{chefname: "usama", email: "shaheerusama6@gmail.com", password: "password", password_confirmation: "password"}}
     end
+    follow_redirect!
+    assert_template "chefs/show"
+    assert_not flash.empty?
+    
 end
