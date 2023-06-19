@@ -1,0 +1,12 @@
+<h1>this is show page of ingredients</h1>
+    <% if @ingredient.recipes.count !=0 %>
+    <h4 align="center"><%= @ingredient.name %></h4>
+    <%= render "recipes/recipe" , obj: @ingredient.recipes%>
+</div>
+<% else %>
+    <h4 align="center"><%= @ingredient.name %> has no recipes yet</h4>
+    <%= link_to "EDIT INTEGRATION", edit_ingredient_path(@ingredient), class: "btn btn-info" %>
+
+    <%= link_to "back to recipes", recipes_path, class: "btn btn-info" %>
+<% end %>
+</div>

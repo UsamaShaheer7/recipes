@@ -10,9 +10,17 @@
         <p>
             <span> <%=gravatar_for(recipe.chef, size: 20)  %></span>
         <span class="quiet">
-        <small>Created<%= time_ago_in_words(recipe.created_at) %> ago</small>
+        <small>Created<%= time_ago_in_words(recipe.created_at) %> ago by <%= recipe.chef.chefname%></small>
         </p>
         </span>
+        <% if logged_in? && (current_chef == recipe.chef || current_chef.admin?) %>
+        <%= link_to "edit" , edit_recipe_path(recipe)%>
+        <%= link_to "delete", recipe_path(recipe), data: {
+        turbo_method: :delete,
+        turbo_confirm: "Are you sure?"
+        } %>
+        <% end %>
+        </div>
         </div>
     </div>
 <%end%>

@@ -8,18 +8,20 @@
         <h2><%= @recipe.name %></h2>
         <h1>description: <%= simple_format(@recipe.description) %></h1>
 <p class="cenetr">
-    <%= link_to gravatar_for(@recipe.chef) ,recipe_path %>
+    <%= link_to gravatar_for(@recipe.chef) ,chef_path(@recipe.chef) %>
 </p>
         <p>
         <span class="quiet">
         </p>
         Created by <%= @recipe.chef.chefname %>
         </span>
+        <% if logged_in? && (current_chef == @recipe.chef || current_chef.admin?) %>
          <small>Created <%= time_ago_in_words(@recipe.created_at) %> ago</small>
          <%= link_to "edit" , edit_recipe_path(@recipe)%>
                <%= link_to "delete", recipe_path(@recipe), data: {
         turbo_method: :delete,
         turbo_confirm: "Are you sure?"
           } %>
+        <% end %>
           <%= link_to "back" , recipes_path%>
     </div>

@@ -10,20 +10,28 @@
         <li class="nav-item">
           <a class="nav-link active" aria-current="page" href="#">Home</a>
         </li>
-        <li class="nav-item">
-          <a class="nav-link" href="#">Link</a>
+        <li class="nav-item ">
+        <%= link_to "chefs", chefs_path, class: "nav-link" %>
         </li>
+        <li class="nav-item">
+        <%= link_to "recipes", recipes_path , class: "nav-link" %>
+        </li>
+        <% if logged_in? %>
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             Recipes
           </a>
           <ul class="dropdown-menu">
             <li><%= link_to "create a new recipe" , new_recipe_path%></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#"><%= link_to "all ingredients" , ingredients_path%></a></li>
+          <% Ingredient.all.each do |ingredient| %>
+            <li><a class="dropdown-item" href="#"><%= link_to ingredient.name , ingredient_path(ingredient) %></a></li>
+            <%end %>
             <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
+            <li><a class="dropdown-item" href="#"><%= link_to "new ingredient", new_ingredient_path%></a></li>
           </ul>
         </li>
+        <% end %>
         <li class="nav-item">
           <a class="nav-link disabled">Disabled</a>
         </li>
@@ -34,4 +42,7 @@
       </form>
     </div>
   </div>
+
+  <div><button class="btn btn-outline-success"><%= link_to "login" , login_path %></button></div>
+  <div><button class="btn btn-outline-success"><%= link_to "logout" , logout_path, turbo_method: :delete %></button></div>
 </nav>
