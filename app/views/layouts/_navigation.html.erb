@@ -27,9 +27,11 @@
           <% Ingredient.all.each do |ingredient| %>
             <li><a class="dropdown-item" href="#"><%= link_to ingredient.name , ingredient_path(ingredient) %></a></li>
             <%end %>
+            <% if logged_in? && current_chef.admin? %>
             <li><hr class="dropdown-divider"></li>
             <li><a class="dropdown-item" href="#"><%= link_to "new ingredient", new_ingredient_path%></a></li>
-          </ul>
+          <% end %>
+            </ul>
         </li>
         <% end %>
         <li class="nav-item">
